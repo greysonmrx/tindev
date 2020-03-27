@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Alert } from "react-native";
+import io from "socket.io-client";
 
 import {
   Container,
@@ -17,7 +18,14 @@ import {
   Shadow,
   EmptyContent,
   Empty,
-  Back
+  Back,
+  Match,
+  MatchImg,
+  MatchAvatar,
+  MatchName,
+  MatchBio,
+  MatchButton,
+  MatchButtonText
 } from "./styles";
 
 import api from "../../services/api";
@@ -25,12 +33,24 @@ import api from "../../services/api";
 import logoImg from "../../assets/logo.png";
 import likeIcon from "../../assets/like.png";
 import dislikeIcon from "../../assets/dislike.png";
+import itsamatch from "../../assets/itsamatch.png";
 
 function Main() {
   const [devs, setDevs] = useState([]);
+  const [matchDev, setMatchDev] = useState(null);
 
   const navigation = useNavigation();
   const route = useRoute();
+
+  useEffect(() => {
+    const socket = io("http://192.168.100.52:5000", {
+      query: { user: route.params.id }
+    });
+
+    socket.on("match", dev => {
+      setMatchDev(dev);
+    });
+  }, [route.params.id]);
 
   useEffect(() => {
     async function loadDevs() {
@@ -112,6 +132,19 @@ function Main() {
         <EmptyContent>
           <Empty>Acabou :(</Empty>
         </EmptyContent>
+      )}
+      {matchDev && (
+        <Match>
+          <MatchImg style={{ resizeMode: "contain" }} source={itsamatch} />
+
+          <MatchAvatar source={{ uri: matchDev.avatar }} />
+          <MatchName>{matchDev.name}</MatchName>
+          <MatchBio>{matchDev.bio}</MatchBio>
+
+          <MatchButton onPress={() => setMatchDev(null)}>
+            <MatchButtonText>FECHAR</MatchButtonText>
+          </MatchButton>
+        </Match>
       )}
     </Container>
   );

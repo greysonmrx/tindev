@@ -104,3 +104,54 @@ export const Empty = styled.Text`
 `;
 
 export const Back = styled.TouchableOpacity``;
+
+export const Match = styled.View`
+  flex: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MatchImg = styled.Image`
+  height: 60px;
+`;
+
+export const MatchAvatar = styled.Image`
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  border: 5px solid #ffffff;
+  margin: 30px;
+`;
+
+export const MatchName = styled.Text`
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+`;
+
+export const MatchBio = styled.Text`
+  font-size: 16px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 24px;
+  text-align: center;
+  padding: 0 30px;
+`;
+
+export const MatchButton = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+`;
+
+export const MatchButtonText = styled.Text`
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+`;
