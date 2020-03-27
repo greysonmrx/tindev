@@ -20,8 +20,8 @@
 </p>
 
 <p align="center">
-  <img src="./web.gif" alt="demo-web" height="400">
-  <img src="./mobile.gif" alt="demo-mobile" height="400">
+  <img src="./web.gif" alt="demo-web" height="350">
+  <img src="./mobile.gif" alt="demo-mobile" height="350">
 </p>
 
 ## Features
