@@ -6,9 +6,13 @@ import logoImg from "../../assets/logo.png";
 
 function Login() {
   return (
-    <Container>
+    <Container behavior="padding">
       <Img source={logoImg} />
-      <Input placeholder="Digite seu usuário no GitHub" />
+      <Input
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Digite seu usuário no GitHub"
+      />
       <Button onPress={() => {}}>
         <ButtonText>Enviar</ButtonText>
       </Button>
