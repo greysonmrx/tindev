@@ -90,3 +90,15 @@ export const Shadow = StyleSheet.create(
         }
       }
 );
+
+export const EmptyContent = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Empty = styled.Text`
+  color: #999999;
+  font-size: 24px;
+  font-weight: bold;
+`;

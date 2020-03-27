@@ -14,7 +14,9 @@ import {
   Buttons,
   Button,
   Icon,
-  Shadow
+  Shadow,
+  EmptyContent,
+  Empty
 } from "./styles";
 
 import api from "../../services/api";
@@ -75,29 +77,37 @@ function Main() {
   return (
     <Container>
       <Img source={logoImg} />
-      <List>
-        {devs.map((dev, index) => (
-          <Card key={dev._id} style={{ zIndex: devs.length - index }}>
-            <Avatar
-              source={{
-                uri: dev.avatar
-              }}
-            />
-            <Footer>
-              <Name>{dev.name}</Name>
-              <Bio>{dev.bio}</Bio>
-            </Footer>
-          </Card>
-        ))}
-      </List>
-      <Buttons>
-        <Button style={Shadow} onPress={handleLike}>
-          <Icon source={likeIcon} />
-        </Button>
-        <Button style={Shadow} onPress={handleDislike}>
-          <Icon source={dislikeIcon} />
-        </Button>
-      </Buttons>
+      {devs.length > 0 ? (
+        <>
+          <List>
+            {devs.map((dev, index) => (
+              <Card key={dev._id} style={{ zIndex: devs.length - index }}>
+                <Avatar
+                  source={{
+                    uri: dev.avatar
+                  }}
+                />
+                <Footer>
+                  <Name>{dev.name}</Name>
+                  <Bio>{dev.bio}</Bio>
+                </Footer>
+              </Card>
+            ))}
+          </List>
+          <Buttons>
+            <Button style={Shadow} onPress={handleLike}>
+              <Icon source={likeIcon} />
+            </Button>
+            <Button style={Shadow} onPress={handleDislike}>
+              <Icon source={dislikeIcon} />
+            </Button>
+          </Buttons>
+        </>
+      ) : (
+        <EmptyContent>
+          <Empty>Acabou :(</Empty>
+        </EmptyContent>
+      )}
     </Container>
   );
 }
