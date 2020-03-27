@@ -44,6 +44,20 @@ function Main() {
     loadDevs();
   }, [route.params.id]);
 
+  async function handleLike() {
+    const [dev, ...rest] = devs;
+
+    try {
+      setDevs(rest);
+
+      await api.post(`/devs/${dev._id}/likes`, null, {
+        headers: { user: route.params.id }
+      });
+    } catch (err) {
+      Alert.alert(err.response.data.message);
+    }
+  }
+
   return (
     <Container>
       <Img source={logoImg} />
@@ -63,7 +77,7 @@ function Main() {
         ))}
       </List>
       <Buttons>
-        <Button style={Shadow}>
+        <Button style={Shadow} onPress={handleLike}>
           <Icon source={likeIcon} />
         </Button>
         <Button style={Shadow}>
