@@ -19,10 +19,10 @@
   <a href="#license">License</a>
 </p>
 
-<div>
-  <img src="./web.gif" alt="demo-web" height="425">
-  <img src="./mobile.gif" alt="demo-mobile" height="425">
-</div>
+<p align="center">
+  <img src="./web.gif" alt="demo-web" height="400">
+  <img src="./mobile.gif" alt="demo-mobile" height="400">
+</p>
 
 ## Features
 
