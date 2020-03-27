@@ -66,3 +66,10 @@ export const Buttons = styled.div`
     }
   }
 `;
+
+export const Empty = styled.div`
+  font-size: 32px;
+  color: #999999;
+  font-weight: bold;
+  margin-top: 300px;
+`;

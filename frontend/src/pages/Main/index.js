@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { Container, List, Card, Buttons } from "./styles";
+import { Container, List, Card, Buttons, Empty } from "./styles";
 
 import api from "../../services/api";
 
@@ -57,26 +57,30 @@ function Main({ match }) {
       <Link to="/">
         <img src={logoImg} alt="Tindev" />
       </Link>
-      <List>
-        {devs.map(dev => (
-          <Card key={dev._id}>
-            <img src={dev.avatar} alt={dev.user} />
-            <footer>
-              <strong>{dev.name}</strong>
-              <p>{dev.bio}</p>
-            </footer>
-            <Buttons>
-              <button type="button" onClick={() => handleDislike(dev._id)}>
-                <img src={dislikeIcon} alt="Dislike" />
-              </button>
+      {devs.length > 0 ? (
+        <List>
+          {devs.map(dev => (
+            <Card key={dev._id}>
+              <img src={dev.avatar} alt={dev.user} />
+              <footer>
+                <strong>{dev.name}</strong>
+                <p>{dev.bio}</p>
+              </footer>
+              <Buttons>
+                <button type="button" onClick={() => handleDislike(dev._id)}>
+                  <img src={dislikeIcon} alt="Dislike" />
+                </button>
 
-              <button type="button" onClick={() => handleLike(dev._id)}>
-                <img src={likeIcon} alt="Like" />
-              </button>
-            </Buttons>
-          </Card>
-        ))}
-      </List>
+                <button type="button" onClick={() => handleLike(dev._id)}>
+                  <img src={likeIcon} alt="Like" />
+                </button>
+              </Buttons>
+            </Card>
+          ))}
+        </List>
+      ) : (
+        <Empty>Acabou :(</Empty>
+      )}
     </Container>
   );
 }
