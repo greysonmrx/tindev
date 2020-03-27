@@ -58,6 +58,20 @@ function Main() {
     }
   }
 
+  async function handleDislike() {
+    const [dev, ...rest] = devs;
+
+    try {
+      setDevs(rest);
+
+      await api.post(`/devs/${dev._id}/dislikes`, null, {
+        headers: { user: route.params.id }
+      });
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+  }
+
   return (
     <Container>
       <Img source={logoImg} />
@@ -80,7 +94,7 @@ function Main() {
         <Button style={Shadow} onPress={handleLike}>
           <Icon source={likeIcon} />
         </Button>
-        <Button style={Shadow}>
+        <Button style={Shadow} onPress={handleDislike}>
           <Icon source={dislikeIcon} />
         </Button>
       </Buttons>
