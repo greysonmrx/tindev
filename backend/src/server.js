@@ -14,9 +14,25 @@ mongoose.connect(
 );
 
 const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 
+const connectedUsers = {};
+
+io.on("connection", socket => {
+  const { user } = socket.handshake.query;
+
+  connectedUsers[user] = socket.id;
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  req.connectedUsers = connectedUsers;
+
+  return next();
+});
 app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.listen(5000);
+server.listen(5000);
