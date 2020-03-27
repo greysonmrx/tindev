@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Alert } from "react-native";
 
 import {
@@ -16,7 +16,8 @@ import {
   Icon,
   Shadow,
   EmptyContent,
-  Empty
+  Empty,
+  Back
 } from "./styles";
 
 import api from "../../services/api";
@@ -28,6 +29,7 @@ import dislikeIcon from "../../assets/dislike.png";
 function Main() {
   const [devs, setDevs] = useState([]);
 
+  const navigation = useNavigation();
   const route = useRoute();
 
   useEffect(() => {
@@ -76,7 +78,10 @@ function Main() {
 
   return (
     <Container>
-      <Img source={logoImg} />
+      <Back onPress={() => navigation.goBack()}>
+        <Img source={logoImg} />
+      </Back>
+
       {devs.length > 0 ? (
         <>
           <List>

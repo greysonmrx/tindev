@@ -102,3 +102,5 @@ export const Empty = styled.Text`
   font-size: 24px;
   font-weight: bold;
 `;
+
+export const Back = styled.TouchableOpacity``;
