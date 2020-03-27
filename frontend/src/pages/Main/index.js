@@ -28,6 +28,18 @@ function Main({ match }) {
     loadDevs();
   }, [match.params.id]);
 
+  async function handleLike(id) {
+    try {
+      setDevs(oldState => oldState.filter(item => item._id !== id));
+
+      await api.post(`/devs/${id}/likes`, null, {
+        headers: { user: match.params.id }
+      });
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+  }
+
   return (
     <Container>
       <Link to="/">
@@ -46,7 +58,7 @@ function Main({ match }) {
                 <img src={dislikeIcon} alt="Dislike" />
               </button>
 
-              <button type="button" onClick={() => {}}>
+              <button type="button" onClick={() => handleLike(dev._id)}>
                 <img src={likeIcon} alt="Like" />
               </button>
             </Buttons>
