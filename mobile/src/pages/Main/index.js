@@ -27,7 +27,6 @@ function Main() {
   const [devs, setDevs] = useState([]);
 
   const route = useRoute();
-  console.log(route.params.id);
 
   useEffect(() => {
     async function loadDevs() {
@@ -49,8 +48,8 @@ function Main() {
     <Container>
       <Img source={logoImg} />
       <List>
-        {devs.map(dev => (
-          <Card key={dev._id}>
+        {devs.map((dev, index) => (
+          <Card key={dev._id} style={{ zIndex: devs.length - index }}>
             <Avatar
               source={{
                 uri: dev.avatar
